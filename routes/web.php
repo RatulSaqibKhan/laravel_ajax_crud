@@ -19,3 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/get-dashboard-data', 'HomeController@getDashboardData');
+
+Route::get('/students', 'StudentController@index');
+Route::get('/students/create', 'StudentController@create');
+Route::post('/students/store', 'StudentController@store');
+Route::get('/students/edit', 'StudentController@edit');
+Route::get('/students/{id}/update', 'StudentController@update');

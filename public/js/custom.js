@@ -35,3 +35,8 @@ function ajaxDelete(url, data) {
 
     return ajax;
 }
+
+$(document).ready(function () {
+    // Flash message fade in
+    $(document).find('.flash-message').fadeIn().delay(1500).fadeOut(2000);
+});

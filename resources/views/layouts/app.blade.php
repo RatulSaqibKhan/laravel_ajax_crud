@@ -51,9 +51,9 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
-                        @else
-                            @includeIf('includes.logged_in_navigation_bar')
-                            @endguest
+                    @else
+                         @includeIf('includes.logged_in_navigation_bar')
+                    @endguest
                 </ul>
             </div>
         </div>

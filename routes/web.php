@@ -24,4 +24,5 @@ Route::get('/students', 'StudentController@index');
 Route::get('/students/create', 'StudentController@create');
 Route::post('/students/store', 'StudentController@store');
 Route::get('/students/edit', 'StudentController@edit');
-Route::get('/students/{id}/update', 'StudentController@update');
+Route::get('/students/update', 'StudentController@update');
+Route::delete('/students/delete', 'StudentController@delete');

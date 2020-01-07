@@ -15,6 +15,7 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('student_id', 25);
             $table->string('name', 255);
             $table->date('birth_date');
             $table->integer('gender')->default(1)->comment="1=Male,2=Female,3=Other";

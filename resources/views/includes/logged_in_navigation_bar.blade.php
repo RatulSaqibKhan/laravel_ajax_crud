@@ -1,47 +1,48 @@
+
 <li class="nav-item dropdown">
-    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+    <a id="navbarDropdown  {{ setNavigationActiveClass('students*') }}" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
         Students <span class="caret"></span>
     </a>
 
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="{{ url('/students') }}">
+        <a class="dropdown-item {{ setNavigationActiveClass('students') }}" href="{{ url('/students') }}">
             List
         </a>
-        <a class="dropdown-item" href="{{ url('/students/create') }}">
+        <a class="dropdown-item {{ setNavigationActiveClass('students/create') }}" href="{{ url('/students/create') }}">
             New Student
         </a>
     </div>
 </li>
 <li class="nav-item dropdown">
-    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+    <a id="navbarDropdown {{ setNavigationActiveClass('student-classes/*') }}" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
         Classes <span class="caret"></span>
     </a>
 
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="{{ url('/student-classes') }}">
+        <a class="dropdown-item {{ setNavigationActiveClass('student-classes') }}" href="{{ url('/student-classes') }}">
             List
         </a>
-        <a class="dropdown-item" href="{{ url('/student-classes/create') }}">
+        <a class="dropdown-item {{ setNavigationActiveClass('student-classes/create') }}" href="{{ url('/student-classes/create') }}">
             New Class
         </a>
     </div>
 </li>
 <li class="nav-item dropdown">
-    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+    <a id="navbarDropdown {{ setNavigationActiveClass('sections/*') }}" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
         Sections <span class="caret"></span>
     </a>
 
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="{{ url('/sections') }}">
+        <a class="dropdown-item {{ setNavigationActiveClass('sections') }}" href="{{ url('/sections') }}">
             List
         </a>
-        <a class="dropdown-item" href="{{ url('/sections/create') }}">
+        <a class="dropdown-item {{ setNavigationActiveClass('sections/create') }}" href="{{ url('/sections/create') }}">
             New Section
         </a>
     </div>
 </li>
 <li class="nav-item dropdown">
-    <a id="navbarDropdown" class="nav-link" href="{{ url('/assign-student-in-class') }}">
+    <a id="navbarDropdown {{ setNavigationActiveClass('assign-student-in-class') }}" class="nav-link" href="{{ url('/assign-student-in-class') }}">
         Assign Student in Class
     </a>
 </li>

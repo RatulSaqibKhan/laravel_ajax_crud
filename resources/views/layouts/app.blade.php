@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
 <body>
@@ -51,9 +52,9 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
-                    @else
-                         @includeIf('includes.logged_in_navigation_bar')
-                    @endguest
+                        @else
+                            @includeIf('includes.logged_in_navigation_bar')
+                            @endguest
                 </ul>
             </div>
         </div>
@@ -63,7 +64,9 @@
         <div class="col-sm-12 flash-message">
             @includeIf('includes.flash_message')
         </div>
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>
     </main>
 </div>
 <script src="{{ asset('js/jquery.min.js') }}"></script>

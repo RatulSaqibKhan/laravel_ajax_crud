@@ -7,17 +7,21 @@
         </div>
         <div class="card-body">
             <div class="row pb-4">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <a href="{{ url('/students/create') }}" class="btn btn-sm btn-outline-primary">New Entry</a>
                 </div>
-                {{--{!! Form::open(['url' => '/students/search', 'method' => 'get', 'class'=> 'form-group', 'autocomplete' => 'off']) !!}
-                <div class="col-sm-7">
-                    {!! Form::text('q', null, ['class' => 'form-control']) !!}
+                <div class="col-sm-10">
+                    {!! Form::open(['url' => '/students/search', 'method' => 'get', 'class'=> 'form-group', 'autocomplete' => 'off']) !!}
+                    <div class="row">
+                        <div class="offset-5 col-4 pull-right">
+                            {!! Form::text('q', null, ['class' => 'form-control', 'placeholder' => 'Search Here']) !!}
+                        </div>
+                        <div class="col-3  pull-right">
+                            <button type="submit" class="form-control btn btn-sm btn-primary">Search</button>
+                        </div>
+                    </div>
+                    {!! Form::close() !!}
                 </div>
-                <div class="col-sm-2">
-                    <button type="submit" class="form-control btn btn-sm btn-primary">Search</button>
-                </div>
-                {!! Form::close() !!}--}}
             </div>
             <div class="row">
                 <div class="col-sm-12 table-responsive">
@@ -39,7 +43,7 @@
                             @foreach($students as $student)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ str_pad($student->id, 10, STR_PAD_LEFT) }}</td>
+                                    <td>{{ $student->student_id }}</td>
                                     <td>{{ $student->name }}</td>
                                     <td>{{ \App\Student::GENDERS[$student->gender] }}</td>
                                     <td>{{ date('d/m/Y', strtotime($student->birth_date)) }}</td>
@@ -48,6 +52,10 @@
                                     <td>{{ $student->address }}</td>
                                 </tr>
                             @endforeach
+                        @else
+                            <tr>
+                                <th class="text-center" colspan="8">No Data</th>
+                            </tr>
                         @endif
                         </tbody>
                     </table>

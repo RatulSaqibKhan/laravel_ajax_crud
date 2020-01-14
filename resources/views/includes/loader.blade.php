@@ -1,0 +1,1 @@
+<div id="loader"><i class="fa fa-circle-o-notch fa-spin spin-loader" style="font-size:54px"></i></div>

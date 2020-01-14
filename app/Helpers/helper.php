@@ -4,9 +4,6 @@ define('UPDATE_MSG', 'Data Updated Successfully!');
 define('DELETE_MSG', 'Data Deleted Successfully!');
 define('WARNING_MSG', 'Something went wrong!');
 
-/*if (!function_exists('setNavigationActiveClass')) {
-
-}*/
 
 function setNavigationActiveClass($url)
 {

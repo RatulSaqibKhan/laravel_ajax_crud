@@ -40,8 +40,8 @@ class StudentController extends Controller
 
             DB::commit();
             $json_response_data = [
-                'status' => 'danger',
-                'html' => $html,
+                'status' => 'success',
+                'message' => $html,
             ];
 
         } catch (Exception $e) {
@@ -52,7 +52,7 @@ class StudentController extends Controller
             DB::rollBack();
             $json_response_data = [
                 'status' => 'danger',
-                'html' => $html,
+                'message' => $html,
             ];
         }
 
@@ -71,13 +71,13 @@ class StudentController extends Controller
         }
     }
 
-    public function update(StudentRequest $request)
+    public function update($id, StudentRequest $request)
     {
         try {
             DB::beginTransaction();
             $requested_inputs = $request->except('_token', 'id', '_method');
 
-            Student::where('id', $request->id)->update($requested_inputs);
+            Student::where('id', $id)->update($requested_inputs);
 
             $html = view('includes.flash_message', [
                 'flash_message_status' => 'success',
@@ -87,7 +87,7 @@ class StudentController extends Controller
             DB::commit();
             $json_response_data = [
                 'status' => 'success',
-                'html' => $html,
+                'message' => $html,
             ];
 
         } catch (Exception $e) {
@@ -98,7 +98,7 @@ class StudentController extends Controller
             DB::rollBack();
             $json_response_data = [
                 'status' => 'danger',
-                'html' => $html,
+                'message' => $html,
             ];
         }
 

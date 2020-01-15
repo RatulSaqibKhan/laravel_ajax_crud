@@ -5,7 +5,7 @@ namespace App\Rules;
 use App\Student;
 use Illuminate\Contracts\Validation\Rule;
 
-class UniqueStudentContactNoRule implements Rule
+class UniqueStudentIdRule implements Rule
 {
     /**
      * Create a new rule instance.
@@ -27,17 +27,17 @@ class UniqueStudentContactNoRule implements Rule
     {
         $value = strtoupper($value);
 
-        $contact_no = Student::where([
-            'contact_no' => $value,
+        $student_id = Student::where([
+            'student_id' => $value,
         ]);
 
         if (request()->route('id')) {
-            $contact_no = $contact_no->where('id', '!=', request()->route('id'));
+            $student_id = $student_id->where('id', '!=', request()->route('id'));
         }
 
-        $contact_no = $contact_no->first();
+        $student_id = $student_id->first();
 
-        return $contact_no ? false : true;
+        return $student_id ? false : true;
     }
 
     /**
@@ -47,6 +47,6 @@ class UniqueStudentContactNoRule implements Rule
      */
     public function message()
     {
-        return 'This contact no is already exists.';
+        return 'This :attribute is already exists.';
     }
 }

@@ -36,6 +36,16 @@ function ajaxDelete(url, data) {
     return ajax;
 }
 
+function ajaxDynamic(type, url, data) {
+    var ajax = $.ajax({
+        type : type,
+        url  : url,
+        data  : data
+    });
+
+    return ajax;
+}
+
 $(document).ready(function () {
     // Flash message fade in
     $(document).find('.flash-message').fadeIn().delay(1500).fadeOut(2000);

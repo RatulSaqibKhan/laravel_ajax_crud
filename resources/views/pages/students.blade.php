@@ -36,6 +36,7 @@
                             <th>Guardian Name</th>
                             <th>Contact No</th>
                             <th>Address</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -50,6 +51,12 @@
                                     <td>{{ $student->guardian_name }}</td>
                                     <td>{{ $student->contact_no }}</td>
                                     <td>{{ $student->address }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ url('/students/edit?id='.$student->id) }}" class="btn btn-sm btn-success" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ url('/students/delete') }}" data-id="{{ $student->id }}" class="delete-list-data btn btn-sm btn-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         @else
@@ -63,4 +70,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script src="{{ asset('js/delete_list_data.js') }}"></script>
 @endsection

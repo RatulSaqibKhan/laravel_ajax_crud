@@ -121,7 +121,7 @@ class StudentController extends Controller
             DB::commit();
             $json_response_data = [
                 'status' => 'success',
-                'html' => $html,
+                'message' => $html,
             ];
 
         } catch (Exception $e) {
@@ -132,7 +132,7 @@ class StudentController extends Controller
             DB::rollBack();
             $json_response_data = [
                 'status' => 'danger',
-                'html' => $html,
+                'message' => $html,
             ];
         }
         return response()->json($json_response_data);

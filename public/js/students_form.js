@@ -29,7 +29,7 @@ $(document).on('submit', '#student-form', function (e) {
         .fail(function (response) {
             $('#loader').hide();
             $.each(response.responseJSON.errors, function (errorIndex, errorValue) {
-                let errorDomElement, error_index, errorMessage;
+                var errorDomElement, error_index, errorMessage;
                 errorDomElement = '' + errorIndex;
                 errorDomIndexArray = errorDomElement.split(".");
                 errorDomElement = '.' + errorDomIndexArray[0];

@@ -45,6 +45,7 @@ function ajaxDynamic(type, url, data) {
 
     return ajax;
 }
+var loader = $('#loader');
 
 $(document).ready(function () {
     // Flash message fade in

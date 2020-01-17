@@ -27,3 +27,11 @@ Route::get('/students/edit', 'StudentController@edit');
 Route::put('/students/{id}/update', 'StudentController@update');
 Route::delete('/students/delete', 'StudentController@delete');
 Route::get('/students/search', 'StudentController@search');
+
+Route::get('/student-classes', 'StudentClassController@index');
+Route::get('/student-classes/create', 'StudentClassController@create');
+Route::post('/student-classes/store', 'StudentClassController@store');
+Route::get('/student-classes/edit', 'StudentClassController@edit');
+Route::put('/student-classes/{id}/update', 'StudentClassController@update');
+Route::delete('/student-classes/delete', 'StudentClassController@delete');
+Route::get('/student-classes/search', 'StudentClassController@search');

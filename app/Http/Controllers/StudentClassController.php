@@ -2,46 +2,83 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StudentRequest;
-use App\Student;
-use Illuminate\Foundation\Console\Presets\React;
+use App\Http\Requests\StudentClassMultipleRequest;
+use App\Http\Requests\StudentClassRequest;
+use App\StudentClass;
 use Illuminate\Http\Request;
 use DB, Session, Exception;
 
-class StudentController extends Controller
+class StudentClassController extends Controller
 {
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index()
     {
-        $students = Student::orderBy('created_at', 'desc')->paginate();
+        $student_classes = StudentClass::orderBy('created_at', 'desc')->paginate();
 
-        return view('pages.students', [
-            'students' => $students
+        return view('pages.student_classes', [
+            'student_classes' => $student_classes
         ]);
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function create()
     {
-        $student = null;
-        return view('forms.student', ['student' => $student]);
+        $student_class = null;
+
+        return view('forms.student_class', ['student_class' => $student_class]);
+
     }
 
-    /**
-     * @param StudentRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store(StudentRequest $request)
+    public function store(StudentClassRequest $request)
     {
         try {
             DB::beginTransaction();
             $requested_inputs = $request->except('_token');
 
-            Student::create($requested_inputs);
+            StudentClass::create($requested_inputs);
+
+            $html = view('includes.flash_message', [
+                'flash_message_status' => 'success',
+                'flash_message' => SUCCESS_MSG,
+            ])->render();
+
+            DB::commit();
+            $json_response_data = [
+                'status' => 'success',
+                'message' => $html,
+            ];
+
+        } catch (Exception $e) {
+            $html = view('includes.flash_message', [
+                'flash_message_status' => 'danger',
+                'flash_message' => WARNING_MSG,
+            ])->render();
+            DB::rollBack();
+            $json_response_data = [
+                'status' => 'danger',
+                'message' => $html,
+            ];
+        }
+
+        return response()->json($json_response_data);
+    }
+
+    public function createMultiple()
+    {
+        $student_class = null;
+
+        return view('forms.student_class_multiple');
+
+    }
+
+    public function storeMultiple(StudentClassMultipleRequest $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            foreach ($request->name as $key => $name) {
+                $student_class = new StudentClass();
+                $student_class->name = $name;
+                $student_class->save();
+            }
 
             $html = view('includes.flash_message', [
                 'flash_message_status' => 'success',
@@ -71,36 +108,32 @@ class StudentController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Request $request)
     {
-        try {
-            $id = $request->id;
-            $student = Student::findOrFail($id);
-            return view('forms.student', ['student' => $student]);
-        } catch (Exception $e) {
-            Session::flash('danger', WARNING_MSG);
-            return redirect()->back();
-        }
+        $student_class = StudentClass::findOrFail($request->id);
+
+        return view('forms.student_class', ['student_class' => $student_class]);
+
     }
 
     /**
      * @param $id
-     * @param StudentRequest $request
+     * @param StudentClassRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update($id, StudentRequest $request)
+    public function update($id, StudentClassRequest $request)
     {
         try {
             DB::beginTransaction();
-            $requested_inputs = $request->except('_token', 'id', '_method');
+            $requested_inputs = $request->except('_token', 'id');
 
-            Student::where('id', $id)->update($requested_inputs);
+            StudentClass::where('id', $id)->update($requested_inputs);
 
             $html = view('includes.flash_message', [
                 'flash_message_status' => 'success',
-                'flash_message' => UPDATE_MSG,
+                'flash_message' => SUCCESS_MSG,
             ])->render();
 
             DB::commit();
@@ -133,7 +166,7 @@ class StudentController extends Controller
         try {
             DB::beginTransaction();
 
-            $student = Student::findOrFail($request->id);
+            $student = StudentClass::findOrFail($request->id);
             $student->delete();
 
             $html = view('includes.flash_message', [
@@ -169,17 +202,12 @@ class StudentController extends Controller
     {
         $q = $request->q ?? '';
 
-        $students = Student::when($q != '', function ($query) use ($q) {
-            return $query->orWhere('student_id', 'like', '%'.$q.'%')
-                ->orWhere('name', 'like', '%'.$q.'%')
-                ->orWhere('birth_date', 'like', '%'.$q.'%')
-                ->orWhere('guardian_name', 'like', '%'.$q.'%')
-                ->orWhere('contact_no', 'like', '%'.$q.'%');
+        $student_classes = StudentClass::when($q != '', function ($query) use ($q) {
+            return $query->orWhere('name', 'like', '%'.$q.'%');
         })->orderBy('created_at', 'desc')->paginate();
 
-        return view('pages.students', [
-            'students' => $students,
-            'q' => $request->q
+        return view('pages.student_classes', [
+            'student_classes' => $student_classes
         ]);
     }
 }

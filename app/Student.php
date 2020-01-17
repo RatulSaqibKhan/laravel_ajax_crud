@@ -2,10 +2,14 @@
 
 namespace App;
 
+use Iatstuti\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {
+    use CascadeSoftDeletes, SoftDeletes;
+
     protected $fillable = [
         'student_id', 'name', 'birth_date', 'gender', 'guardian_name', 'contact_no', 'address'
     ];

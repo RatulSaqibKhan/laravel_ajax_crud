@@ -26,3 +26,4 @@ Route::post('/students/store', 'StudentController@store');
 Route::get('/students/edit', 'StudentController@edit');
 Route::put('/students/{id}/update', 'StudentController@update');
 Route::delete('/students/delete', 'StudentController@delete');
+Route::get('/students/search', 'StudentController@search');

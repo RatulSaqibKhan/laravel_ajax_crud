@@ -10,6 +10,9 @@ use DB, Session, Exception;
 
 class StudentController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $students = Student::orderBy('created_at', 'desc')->paginate();
@@ -19,12 +22,19 @@ class StudentController extends Controller
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         $student = null;
         return view('forms.student', ['student' => $student]);
     }
 
+    /**
+     * @param StudentRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(StudentRequest $request)
     {
         try {
@@ -59,6 +69,10 @@ class StudentController extends Controller
         return response()->json($json_response_data);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function edit(Request $request)
     {
         try {
@@ -71,6 +85,11 @@ class StudentController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     * @param StudentRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update($id, StudentRequest $request)
     {
         try {
@@ -105,6 +124,10 @@ class StudentController extends Controller
         return response()->json($json_response_data);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function delete(Request $request)
     {
         try {
@@ -136,5 +159,23 @@ class StudentController extends Controller
             ];
         }
         return response()->json($json_response_data);
+    }
+
+    public function search(Request $request)
+    {
+        $q = $request->q ?? '';
+
+        $students = Student::when($q != '', function ($query) use ($q) {
+            return $query->orWhere('student_id', 'like', '%'.$q.'%')
+                ->orWhere('name', 'like', '%'.$q.'%')
+                ->orWhere('birth_date', 'like', '%'.$q.'%')
+                ->orWhere('guardian_name', 'like', '%'.$q.'%')
+                ->orWhere('contact_no', 'like', '%'.$q.'%');
+        })->orderBy('created_at', 'desc')->paginate();
+
+        return view('pages.students', [
+            'students' => $students,
+            'q' => $request->q
+        ]);
     }
 }

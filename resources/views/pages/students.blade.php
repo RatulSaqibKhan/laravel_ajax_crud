@@ -8,13 +8,13 @@
         <div class="card-body">
             <div class="row pb-4">
                 <div class="col-sm-2">
-                    <a href="{{ url('/students/create') }}" class="btn btn-sm btn-outline-primary">New Entry</a>
+                    <button type="button" data-href="{{ url('/students/create') }}" class="form-control btn btn-sm btn-outline-primary create-button">New Entry</button>
                 </div>
                 <div class="col-sm-10">
                     {!! Form::open(['url' => '/students/search', 'method' => 'get', 'class'=> 'form-group', 'autocomplete' => 'off']) !!}
                     <div class="row">
                         <div class="offset-5 col-4 pull-right">
-                            {!! Form::text('q', null, ['class' => 'form-control', 'placeholder' => 'Search Here']) !!}
+                            {!! Form::text('q', $q ?? null, ['class' => 'form-control', 'placeholder' => 'Search Here']) !!}
                         </div>
                         <div class="col-3  pull-right">
                             <button type="submit" class="form-control btn btn-sm btn-primary">Search</button>
@@ -24,8 +24,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 table-responsive">
-                    <table class="table table-bordered">
+                <div class="col-sm-12 table-responsive dom-min-height-500">
+                    <table class="table table-bordered table-head-fix">
                         <thead>
                         <tr>
                             <th>SL</th>
@@ -69,8 +69,12 @@
                 </div>
             </div>
         </div>
+        <div class="card-footer">
+            {{ $students->render() }}
+        </div>
     </div>
 @endsection
 @section('scripts')
+    <script src="{{ asset('js/list_data.js') }}"></script>
     <script src="{{ asset('js/delete_list_data.js') }}"></script>
 @endsection

@@ -45,9 +45,10 @@ function ajaxDynamic(type, url, data) {
 
     return ajax;
 }
-var loader = $('#loader');
 
 $(document).ready(function () {
+    var loader = $('#loader');
     // Flash message fade in
     $(document).find('.flash-message').fadeIn().delay(1500).fadeOut(2000);
 });
+

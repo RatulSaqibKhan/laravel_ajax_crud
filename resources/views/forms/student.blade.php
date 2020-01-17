@@ -6,7 +6,7 @@
             <h4>{{ $student ? "Update" : "New" }} Student</h4>
         </div>
         <div class="card-body">
-            {!! Form::model($student, ['url' => $student ? 'students/'. $student->id .'/update' : '/students/store', 'method' => $student ? 'PUT' : 'POST', 'id' => 'student-form', 'autocomplete' => 'off']) !!}
+            {!! Form::model($student, ['url' => $student ? 'students/'. $student->id .'/update' : '/students/store', 'method' => $student ? 'PUT' : 'POST', 'class' => 'common-form', 'autocomplete' => 'off']) !!}
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-6">
@@ -57,7 +57,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-sm-12">
-                        <a href="{{ url('/students') }}" class="btn btn-danger float-left">Cancel</a>
+                        <a href="{{ url('/students') }}" class="btn btn-danger float-left cancel-button">Cancel</a>
                         <button type="submit" class="btn btn-success float-right">Submit</button>
                     </div>
                 </div>
@@ -67,6 +67,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('js/common_form.js') }}"></script>
-    <script src="{{ asset('js/students_form.js') }}"></script>
+    <script src="{{ asset('js/common_form_submit.js') }}"></script>
 @endsection

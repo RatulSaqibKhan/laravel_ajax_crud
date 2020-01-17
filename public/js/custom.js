@@ -50,5 +50,12 @@ $(document).ready(function () {
     var loader = $('#loader');
     // Flash message fade in
     $(document).find('.flash-message').fadeIn().delay(1500).fadeOut(2000);
+
+    $(document).on('hidden.bs.modal', '#delete-confirmation-modal', function (e) {
+        e.preventDefault();
+        var deleteFormDom = $('#delete-item-form');
+        deleteFormDom.attr('action', '');
+        deleteFormDom.find('input[name="id"]').val('');
+    });
 });
 

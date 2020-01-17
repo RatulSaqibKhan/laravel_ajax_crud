@@ -62,11 +62,12 @@
     </nav>
 
     <main class="py-4">
-        <div class="col-sm-12 flash-message">
-            @includeIf('includes.flash_message')
-        </div>
         <div class="container">
+            <div class="col-sm-12 flash-message">
+                @includeIf('includes.flash_message')
+            </div>
             @yield('content')
+            @includeIf('includes.delete_confirmation_modal')
             @includeIf('includes.loader')
         </div>
     </main>

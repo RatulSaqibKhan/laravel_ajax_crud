@@ -2,10 +2,14 @@
 
 namespace App;
 
+use Iatstuti\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class StudentClassSectionPivot extends Model
 {
+    use SoftDeletes, CascadeSoftDeletes;
+
     protected $fillable = [
         'student_id', 'class_id', 'section_id'
     ];

@@ -31,6 +31,8 @@ Route::get('/students/search', 'StudentController@search');
 Route::get('/student-classes', 'StudentClassController@index');
 Route::get('/student-classes/create', 'StudentClassController@create');
 Route::post('/student-classes/store', 'StudentClassController@store');
+Route::get('/student-classes/create-multiple', 'StudentClassController@createMultiple');
+Route::post('/student-classes/store-multiple', 'StudentClassController@storeMultiple');
 Route::get('/student-classes/edit', 'StudentClassController@edit');
 Route::put('/student-classes/{id}/update', 'StudentClassController@update');
 Route::delete('/student-classes/delete', 'StudentClassController@delete');

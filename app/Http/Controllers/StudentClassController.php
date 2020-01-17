@@ -127,13 +127,13 @@ class StudentClassController extends Controller
     {
         try {
             DB::beginTransaction();
-            $requested_inputs = $request->except('_token', 'id');
+            $requested_inputs = $request->except('_token','_method', 'id');
 
             StudentClass::where('id', $id)->update($requested_inputs);
 
             $html = view('includes.flash_message', [
                 'flash_message_status' => 'success',
-                'flash_message' => SUCCESS_MSG,
+                'flash_message' => UPDATE_MSG,
             ])->render();
 
             DB::commit();
@@ -150,6 +150,7 @@ class StudentClassController extends Controller
             DB::rollBack();
             $json_response_data = [
                 'status' => 'danger',
+                'error' => $e->getMessage(),
                 'message' => $html,
             ];
         }
@@ -207,7 +208,8 @@ class StudentClassController extends Controller
         })->orderBy('created_at', 'desc')->paginate();
 
         return view('pages.student_classes', [
-            'student_classes' => $student_classes
+            'student_classes' => $student_classes,
+            'q' => $q,
         ]);
     }
 }

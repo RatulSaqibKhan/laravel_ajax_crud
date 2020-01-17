@@ -5,7 +5,7 @@
     </a>
 
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item {{ setNavigationActiveClass('students') }}" href="{{ url('/students') }}">
+        <a class="dropdown-item {{ setNavigationActiveClass('students') }} {{ setNavigationActiveClass('students/search*') }}" href="{{ url('/students') }}">
             List
         </a>
         <a class="dropdown-item {{ setNavigationActiveClass('students/create') }}" href="{{ url('/students/create') }}">
@@ -19,11 +19,14 @@
     </a>
 
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item {{ setNavigationActiveClass('student-classes') }}" href="{{ url('/student-classes') }}">
+        <a class="dropdown-item {{ setNavigationActiveClass('student-classes') }} {{ setNavigationActiveClass('student-classes/search*') }}" href="{{ url('/student-classes') }}">
             List
         </a>
         <a class="dropdown-item {{ setNavigationActiveClass('student-classes/create') }}" href="{{ url('/student-classes/create') }}">
             New Class
+        </a>
+        <a class="dropdown-item {{ setNavigationActiveClass('student-classes/create-multiple') }}" href="{{ url('/student-classes/create-multiple') }}">
+            Multiple Class Entry
         </a>
     </div>
 </li>
@@ -33,7 +36,7 @@
     </a>
 
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item {{ setNavigationActiveClass('sections') }}" href="{{ url('/sections') }}">
+        <a class="dropdown-item {{ setNavigationActiveClass('sections') }} {{ setNavigationActiveClass('sections/search*') }}" href="{{ url('/sections') }}">
             List
         </a>
         <a class="dropdown-item {{ setNavigationActiveClass('sections/create') }}" href="{{ url('/sections/create') }}">

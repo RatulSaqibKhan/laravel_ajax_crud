@@ -37,3 +37,13 @@ Route::get('/student-classes/edit', 'StudentClassController@edit');
 Route::put('/student-classes/{id}/update', 'StudentClassController@update');
 Route::delete('/student-classes/delete', 'StudentClassController@delete');
 Route::get('/student-classes/search', 'StudentClassController@search');
+
+Route::get('/sections', 'SectionController@index');
+Route::get('/sections/create', 'SectionController@create');
+Route::post('/sections/store', 'SectionController@store');
+Route::get('/sections/create-multiple', 'SectionController@createMultiple');
+Route::post('/sections/store-multiple', 'SectionController@storeMultiple');
+Route::get('/sections/edit', 'SectionController@edit');
+Route::put('/sections/{id}/update', 'SectionController@update');
+Route::delete('/sections/delete', 'SectionController@delete');
+Route::get('/sections/search', 'SectionController@search');

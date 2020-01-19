@@ -3,24 +3,29 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>Multiple Class Entry</h4>
+            <h4>Multiple Section Entry</h4>
         </div>
         <div class="card-body">
-            {!! Form::open(['url' => '/student-classes/store-multiple', 'method' => 'POST', 'class' => 'common-form', 'autocomplete' => 'off']) !!}
+            {!! Form::open(['url' => '/sections/store-multiple', 'method' => 'POST', 'class' => 'common-form', 'autocomplete' => 'off']) !!}
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-12 table-responsive">
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Class Name</th>
+                                <th>Section Name</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr class="table-row">
                                 <td>
-                                    {!! Form::text('name[]', null, ['class' => 'form-control', 'placeholder' => 'Class Name']) !!}
+                                    {!! Form::select('class_id[]', $student_classes, null, ['class' => 'form-control', 'placeholder' => 'Select Class Name']) !!}
+                                    <span class="text-danger class_id"></span>
+                                </td>
+                                <td>
+                                    {!! Form::text('name[]', null, ['class' => 'form-control', 'placeholder' => 'Section Name']) !!}
                                     <span class="text-danger name"></span>
                                 </td>
                                 <td>
@@ -39,7 +44,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-sm-12">
-                        <a href="{{ url('/student-classes') }}"
+                        <a href="{{ url('/sections') }}"
                            class="btn btn-danger float-left cancel-button">Cancel</a>
                         <button type="submit" class="btn btn-success float-right">Submit</button>
                     </div>

@@ -42,6 +42,9 @@
         <a class="dropdown-item {{ setNavigationActiveClass('sections/create') }}" href="{{ url('/sections/create') }}">
             New Section
         </a>
+        <a class="dropdown-item {{ setNavigationActiveClass('sections/create-multiple') }}" href="{{ url('/sections/create-multiple') }}">
+            Multiple Section Entry
+        </a>
     </div>
 </li>
 <li class="nav-item dropdown">
